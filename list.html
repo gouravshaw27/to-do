@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <title>To-Do-List</title>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-warning navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container mt-5 col-5">
+      <div class="input-group mb-3">
+        <input id="text" type="text" class="form-control" placeholder="Work-To-Be-Done"
+          aria-label="Recipient's username" aria-describedby="button-addon2">
+
+        <button id="togglebtn" class="btn btn-outline-light bg-success " type="button">ADD</button>
+      </div>
+
+      <ul id="parent-li" class="list-group">
+        <li class="list-group-item d-flex">
+          <h3 class="flex-grow-1">An item</h3>
+          <button class="btn btn-primary mx-3" onclick="editChapter(this)">Edit</button>
+          <button class="btn btn-danger" onclick="removeChapter(this)">Remove</button>
+        </li>
+
+      </ul>
+
+    </div>
+    </div>
+  </main>
+  <script>
+
+    let btn = document.getElementById('togglebtn')
+    let text = document.getElementById('text')
+    btn.addEventListener('click', addevent)
+
+    function addevent(e) {
+      text.select(); 
+
+      //for copy button
+      //navigator.clipboard.writeText(text.value);
+      
+      console.log(text.value)
+      let text1 = (text.value)
+
+      let newli = document.createElement('li')
+      newli.className = "list-group-item d-flex"
+      newli.innerHTML = ` <h3 class="flex-grow-1">${text1}</h3>
+           <button class="btn btn-primary mx-3">Edit</button>
+           <button class="btn btn-danger"onclick="removeChapter(this)">Remove</button></li>`
+
+
+      let parentList = document.getElementById('parent-li')
+      parentList.appendChild(newli)
+    }
+    
+          function removeChapter(Element) {
+            Element.parentElement.remove()
+          }
+          function editChapter(Element){
+            console.log(Element.previousElementSibling)
+          }
+   </script>
+</body>
+
+</html>
